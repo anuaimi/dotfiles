@@ -1,48 +1,17 @@
-#!/usr/bin/env bash
 
-ln -s curlrc $HOME/.curlrc
+PWD=$(pwd)
 
-links=$(ls -1 | grep -v install.sh | grep -v README.md)
-
-if [ -z $DOTFILES ]; then
-  echo "Set 'DOTFILES' variable before running this script."
-  exit 1
-fi
-
-create_link() {
-  dotfile=$1
-  filepath=$2
-
-  echo "Linking ${dotfile} -> ${filepath}"
-  ln -s $filepath $dotfile
-}
-
-update_link() {
-  dotfile=~/.$1
-  filepath=$DOTFILES/$1
-
-  if [ ! -e $dotfile ]; then
-    create_link $dotfile $filepath
-  elif [ -L $dotfile ]; then
-    if [ $(readlink $dotfile | grep -c $DOTFILES) -eq 0 ]; then
-      rm $dotfile
-      create_link $dotfile $filepath
-    fi
-  else
-    echo "${dotfile} is not a symlink"
-  fi
-}
-
-# main
-if [ -d $DOTFILES ]; then
-  cd $DOTFILES
-  git submodule update
-
-  for name in $links; do
-    update_link $name
-  done
-else
-  echo "does not exist: ${DOTFILES}"
-  exit 2
-fi
+#ln -s ~/.bash_profile $PWD/bash_profile
+#Linking ~/.bashrc -> /Users/athirnuaimi/projects/dotfiles/bashrc
+ln -s $PWD/aliases ~/.aliases
+ln -s $PWD/curlrc ~/.curlrc
+ln -s $PWD/gemrc ~/.gemrc
+#Linking ~/.gitconfig -> /Users/athirnuaimi/projects/dotfiles/gitconfig
+#Linking ~/.gitignore -> /Users/athirnuaimi/projects/dotfiles/gitignore
+#Linking ~/.hgrc -> /Users/athirnuaimi/projects/dotfiles/hgrc
+#Linking ~/.irbrc -> /Users/athirnuaimi/projects/dotfiles/irbrc
+#Linking ~/.irssi -> /Users/athirnuaimi/projects/dotfiles/irssi
+#Linking ~/.vim -> /Users/athirnuaimi/projects/dotfiles/vim
+#Linking ~/.vimrc -> /Users/athirnuaimi/projects/dotfiles/vimrc
+#Linking ~/.zshrc -> /Users/athirnuaimi/projects/dotfiles/zshrc
 
