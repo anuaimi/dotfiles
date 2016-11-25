@@ -19,4 +19,6 @@ set shiftwidth=4
 set number
 set autowrite
 
+syntax on
+
 map <F2> :NERDTreeToggle<CR>
