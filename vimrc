@@ -11,6 +11,7 @@ Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-bundler'
 Plugin 'tpope/vim-rake'
 Plugin 'tpope/vim-projectionist'
+Plugin 'kien/ctrlp.vim'
 
 call vundle#end()
 filetype plugin indent on
